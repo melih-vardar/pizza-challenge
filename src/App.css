@@ -16,7 +16,7 @@ body {
   padding: 0;
 }
 
-header {
+.HomeHeader {
   /* OK */
   background-image: url("Assets/Iteration-1-assets/home-banner.png");
   background-repeat: no-repeat;
@@ -44,7 +44,7 @@ header {
   padding: 0;
 }
 
-header h1 {
+.HomeHeader h1 {
   width: 37rem;
   height: 4.6rem;
   font-family: 'Londrina Solid';
@@ -60,7 +60,7 @@ header h1 {
   padding: 0;
 }
 
-header h2 {
+.HomeHeader h2 {
   width: 32.4rem;
   height: 4.6rem;
   font-family: "Satisfy";
@@ -74,7 +74,7 @@ header h2 {
   display: none;
 }
 
-header h3 {
+.HomeHeader h3 {
   width: 100%;
   height: 37rem;
   font-family: "Roboto Condensed";
@@ -910,7 +910,6 @@ footer {
 }
 
 .x-logo img {
-  background: #FFFFFF;
   margin: 0;
   padding: 0;
   width: 2.412rem;
@@ -920,7 +919,7 @@ footer {
 
 @media (min-width: 1920px) {
 
-  header {
+  .HomeHeader {
     justify-content: flex-start;
   }
 
@@ -932,18 +931,18 @@ footer {
     top: 3.883rem;
   }
 
-  header h1 {
+  .HomeHeader h1 {
     font-size: 5rem;
     line-height: 5rem;
   }
 
-  header h2 {
+  .HomeHeader h2 {
     display: block;
     position: relative;
     top: 2.5rem;
   }
 
-  header h3 {
+  .HomeHeader h3 {
     height: 18rem;
     position: relative;
     top: 2.5rem;
@@ -1114,10 +1113,12 @@ footer {
   }
 
   .x-logo {
-    width: 1.8rem;
+    width: 2rem;
+    height: 2rem;
   }
 
   .x-logo img {
-    width: 1.8rem;
+    width: 2rem;
+    height: 2rem;
   }
 }
