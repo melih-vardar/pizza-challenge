@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import workintech from '/workintech.svg'
 import { Route, Switch } from "react-router"
 import OrderPizza from './components/OrderPizza'
 import './App.css'
@@ -143,6 +142,8 @@ const footerInstagram = [
     "alt": "Instagram-6",
   }
 ]
+
+
 function App() {
 
 
