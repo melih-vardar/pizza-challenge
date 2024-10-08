@@ -2,14 +2,66 @@ html {
     font-size: 10px;
 }
 
+.orderHeader {
+    width: 100vw;
+    height: 20.7rem;
+    background: #CE2829;
+    border-bottom: 1px solid #C20608;
+    box-shadow: 0px 9px 150px -30px #00000017;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+.orderHeader h1 {
+    width: 36.193rem;
+    height: 4.579rem;
+    color: #FFFFFF;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+
+    font-family: 'Londrina Solid';
+    font-weight: normal;
+    font-size: 4rem;
+
+}
+
+.orderHeader h2 {
+    width: 22.6rem;
+    height: 2.9rem;
+    font-family: Barlow;
+    font-size: 2rem;
+    font-weight: 400;
+    line-height: 2.88rem;
+    color: #FAF7F2;
+    position: absolute;
+    top: 15.8rem;
+    left: 3.9rem;
+    margin: 0;
+    padding: 0;
+}
+
+.siparis-olustur {
+    font-family: Barlow;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 2.88rem;
+    color: #FFFFFF;
+    margin: 0;
+    padding: 0;
+}
+
 .order-textbox {
-    width: 42rem;
+    width: 80%;
     height: 10.9rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin: 0;
-    padding: 0;
+    align-items: center;
 }
 
 .order-textbox h1 {
@@ -32,6 +84,8 @@ html {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin: 0;
+    padding: 0;
 }
 
 
@@ -54,6 +108,8 @@ html {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 0;
+    padding: 0;
 }
 
 .order-textbox2-group h3 {
@@ -66,4 +122,129 @@ html {
     color: #5F5F5F;
     margin: 0;
     padding: 0;
+}
+
+.order-rest {
+    width: 80%;
+    height: min-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4rem;
+}
+
+.order-rest p {
+    width: 100%;
+    height: auto;
+    font-family: Barlow;
+    font-size: 2rem;
+    font-weight: 400;
+    line-height: 2.88rem;
+}
+
+.order-first-form {
+    width: 90%;
+    height: auto;
+    align-self: start;
+    display: flex;
+    justify-content: space-between;
+}
+
+.size-selection {
+    width: auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: 1rem;
+}
+
+.size-selection p {
+    margin: 0;
+    padding: 0;
+}
+
+.size-selection label {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: auto;
+}
+
+.dough-selection label {
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+}
+
+.dough-selection p {
+    margin: 0;
+    padding: 0;
+}
+
+.orderLastPart {
+    display: flex;
+    gap: 2rem;
+    align-items: stretch;
+    width: 100%;
+    height: 5.6rem;
+    margin-bottom: 4rem;
+
+}
+
+.orderLast-1 {
+    width: 50%;
+    height: 100%;
+    display: flex;
+}
+
+.changeButton {
+    background: #FDC913;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    width: 33.3%;
+    height: 100%;
+    padding: 1.45rem 0 1.45rem 0;
+    border-radius: 0.6rem 0 0 0.6rem;
+    font-family: Barlow;
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 2.88rem;
+    text-align: center;
+    color: #000000;
+
+}
+
+.quantity {
+    background-color: white;
+    border: 1px solid #D9D9D9;
+    border-radius: 0.5rem;
+    width: 33.3%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: Barlow;
+    font-size: 2.2rem;
+    font-weight: 400;
+    line-height: 2.64rem;
+    text-align: center;
+
+}
+
+.order-last2 {
+    width: 50%;
+    height: 100%;
+    background: #FDC913;
+}
+
+.orderButton {
+    width: 100%;
+    height: 100%;
+    border-radius: 0.6rem;
+    background: #FDC913;
+
 }

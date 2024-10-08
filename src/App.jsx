@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router"
 import OrderPizza from './components/OrderPizza'
 import './App.css'
 import HomePage from './components/HomePage'
+import Success from './components/Success'
 
 const headerNavList = [
   {
@@ -153,8 +154,11 @@ function App() {
         <Route path="/" exact>
           <HomePage headerNavList={headerNavList} additionalPartNavList={additionalPartNavList} additionalPartCard={additionalPartCard} footerNavList={footerNavList} footerMenuList={footerMenuList} footerInstagram={footerInstagram} />
         </Route>
-        <Route path="/order-pizza">
+        <Route path="/order-pizza" exact>
           <OrderPizza />
+        </Route>
+        <Route path="/order-pizza/success">
+          <Success />
         </Route>
       </Switch>
     </>
