@@ -1,109 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import "./OrderPizza.css"
 import InputMapping from './OrderScreenComponents/InputMapping';
-import { useHistory } from "react-router-dom";
+
 import { FormGroup, Label, Input } from 'reactstrap';
-import axios from "axios";
 
-function OrderPizza() {
+function OrderPizza(props) {
 
-    const malzemeler = [
-        "Pepperoni",
-        "Kanada Jambonu",
-        "Soğan",
-        "Mısır",
-        "Jalepeno",
-        "Biber",
-        "Ananas",
-        "Sosis",
-        "Tavuk Izgara",
-        "Domates",
-        "Sucuk",
-        "Sarımsak",
-        "Zeytin",
-        "Kabak"]
-
-    const [pizzaToppings, setPizzaToppings] = useState([]);
-    const [quantity, setQuantity] = useState(1);
-    const [selectedOption, setSelectedOption] = useState("kucuk");
-    const [doughThickness, setDoughThickness] = useState("");
-    const [price, setPrice] = useState(0);
-    const [orderText, setOrderText] = useState()
-    const [isValid, setIsValid] = useState(false);
-
-    const history = useHistory();
-
-    const handleChange = (event) => {
-        console.log(event.target)
-        if (event.target.id === "ekMalzemeler" && event.target.checked) {
-            setPizzaToppings([...pizzaToppings, event.target.name]);
-        } else if (event.target.id === "ekMalzemeler" && !event.target.checked) {
-            setPizzaToppings(pizzaToppings.filter((malzeme) => malzeme !== event.target.name));
-
-        }
-
-        else if (event.target.name === 'sizeSelection' && event.target.checked) {
-            setSelectedOption(event.target.value);
-        }
-
-        else if (event.target.id === 'selectedDough') {
-            setDoughThickness(event.target.value);
-        }
-
-        else if (event.target.id === 'orderNote') {
-            setOrderText(event.target.value);
-        }
-    };
-
-    const decrementQuantity = () => {
-        if (quantity >= 1)
-            setQuantity((quantity) => quantity - 1)
-    }
-
-    const incrementQuantity = () => {
-        setQuantity((quantity) => quantity + 1)
-    }
-    useEffect(() => {
-        decrementQuantity();
-        incrementQuantity();
-    }, [quantity])
-
-    const handleSubmit = (event) => {
-
-        event.preventDefault();
-
-        axios
-            .post('https://reqres.in/api/pizza', { pizzaToppings, selectedOption, quantity, doughThickness })
-            .then((res) => {
-                const pizzaData = res.data;
-                // console.log(res.data);
-                if (pizzaData) {
-                    history.push('/order-pizza/success');
-                }
-            })
-            .catch((error) => {
-                console.error(error);
-            });
-
-    };
-
-
-    useEffect(() => {
-        setPrice(pizzaToppings.length * 5);
-    }, [pizzaToppings]);
-
-    useEffect(() => {
-
-        if (
-            doughThickness !== "" &&
-            pizzaToppings.length >= 4 &&
-            (orderText && orderText.length >= 3)
-        ) {
-            setIsValid(true);
-        } else {
-            setIsValid(false);
-        }
-    }, [handleChange]);
+    const { quantity, selectedOption, price, handleChange, decrementQuantity, incrementQuantity, malzemeler, handleSubmit, isValid, totalPrice } = props;
 
     return (
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", background: "white" }}>
@@ -264,7 +167,7 @@ function OrderPizza() {
                     </div>
                     <div className="orderPrice-red">
                         <h4 style={{ color: "red" }}>Toplam</h4>
-                        <h4 style={{ color: "red" }}>{(quantity * (85.50 + price)).toFixed(2)}₺</h4>
+                        <h4 style={{ color: "red" }}>{totalPrice.toFixed(2)}₺</h4>
                     </div>
                 </div>
                 <div className="orderLastPart">
