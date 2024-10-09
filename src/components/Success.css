@@ -1,4 +1,11 @@
-.successHomeBanner {
+html {
+    font-size: 62.5%;
+    /* 1rem = 10px */
+    margin: 0;
+    padding: 0;
+}
+
+.successHomeBannerMobile {
     width: 100vw;
     height: 100vh;
     background-color: #CE2829;
@@ -8,8 +15,7 @@
     gap: 10rem;
 }
 
-h1 {
-
+.successHomeBannerMobile h1 {
     font-family: 'Londrina Solid';
     font-weight: normal;
     font-size: 4rem;
@@ -21,13 +27,11 @@ h1 {
     color: #FFFFFF;
     margin-top: 14.9rem;
     padding: 0;
-
     width: 36.193rem;
     height: 4.579rem;
-
 }
 
-h2 {
+.successHomeBannerMobile h2 {
     width: 39.8rem;
     height: 56.959rem;
     font-family: Roboto Condensed;
@@ -41,9 +45,111 @@ h2 {
     padding: 0;
 }
 
+.successHomeBanner {
+    display: none;
+}
+
 @media (min-width: 1920px) {
-    h2 {
-        width: 60rem;
+
+    * {
+        border: 1px solid yellow;
     }
 
+    .successHomeBannerMobile {
+        display: none;
+    }
+
+    .successHomeBanner {
+        width: 100vw;
+        height: 100vh;
+        background-color: #CE2829;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .success-textbox-1 {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .success-textbox-1 h1 {
+        font-family: 'Londrina Solid';
+        display: flex;
+        align-items: center;
+        text-align: center;
+        padding: 0;
+        font-weight: 400;
+        flex-direction: column;
+        align-items: center;
+        color: #FFFFFF;
+        justify-content: flex-start;
+        margin: 5.6rem 0 0 0;
+        width: 36.3rem;
+        height: 5rem;
+        font-size: 5rem;
+        line-height: 5rem;
+    }
+
+    .success-textbox-1 h2 {
+        margin: 7.046rem 0 0 0;
+        width: 32.4rem;
+        height: 4.6rem;
+        font-family: Satisfy;
+        font-size: 3.2rem;
+        font-weight: 400;
+        line-height: 4.427rem;
+        text-align: center;
+        color: #FDC913;
+        padding: 0;
+    }
+
+    .success-textbox-2 h3 {
+        width: 58.667rem;
+        height: 19.5rem;
+        font-family: Roboto Condensed;
+        font-size: 8.6rem;
+        font-weight: 300;
+        line-height: 9.2rem;
+        letter-spacing: 0.15rem;
+        text-align: center;
+        color: #FFFFFF;
+        margin: 0;
+        padding: 0;
+    }
+
+    #border-bottom {
+        display: flex;
+        align-items: center;
+        width: 90%;
+        height: 0px;
+        transform: rotate(0.33deg);
+        border: 1px solid #FAF7F2;
+        margin: 0 0rem 0 3rem;
+    }
+
+    .success-textbox-3 {
+        margin: 2.15rem 0 0 0;
+        padding: 0;
+    }
+
+    .success-textbox-3 h1 {
+        width: 47.6rem;
+        height: 5.6rem;
+
+        font-family: Barlow;
+        font-size: 2.2rem;
+        font-weight: 600;
+        line-height: 2.944rem;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        color: #FFFFFF;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 }

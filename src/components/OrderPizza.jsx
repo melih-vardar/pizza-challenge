@@ -26,8 +26,8 @@ function OrderPizza() {
     const [pizzaToppings, setPizzaToppings] = useState([]);
     const [quantity, setQuantity] = useState(1);
     const [selectedOption, setSelectedOption] = useState("kucuk");
-    const [price, setPrice] = useState(0);
     const [doughThickness, setDoughThickness] = useState("");
+    const [price, setPrice] = useState(0);
     const [orderText, setOrderText] = useState()
     const [isValid, setIsValid] = useState(false);
 
@@ -76,7 +76,7 @@ function OrderPizza() {
             .post('https://reqres.in/api/pizza', { pizzaToppings, selectedOption, quantity, doughThickness })
             .then((res) => {
                 const pizzaData = res.data;
-                console.log(res.data);
+                // console.log(res.data);
                 if (pizzaData) {
                     history.push('/order-pizza/success');
                 }
