@@ -43,6 +43,7 @@ html {
     left: 3.9rem;
     margin: 0;
     padding: 0;
+    text-wrap: nowrap;
 }
 
 .siparis-olustur {
@@ -169,6 +170,9 @@ html {
     flex-direction: row;
     justify-content: space-between;
     width: auto;
+    height: 3rem;
+    align-items: center;
+    gap: 1.27rem;
 }
 
 .dough-selection label {
@@ -183,6 +187,33 @@ html {
     margin: 0;
     padding: 0;
 }
+
+.additionalIngredients {
+    width: 100%;
+    height: 44.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.6rem;
+    margin: 0;
+    padding: 0;
+    column-count: 2;
+
+}
+
+.additionalIngredients p {
+    width: 100%;
+    height: 2.5rem;
+    font-family: Barlow;
+    font-size: 2.2rem;
+    font-weight: 600;
+    line-height: 2.476rem;
+    text-align: left;
+    color: #292929;
+    margin: 0;
+    padding: 0;
+}
+
 
 .orderLastPart {
     display: flex;
@@ -199,6 +230,7 @@ html {
     height: 100%;
     display: flex;
 }
+
 
 .changeButton {
     background: #FDC913;
@@ -247,4 +279,55 @@ html {
     border-radius: 0.6rem;
     background: #FDC913;
 
+}
+
+.orderPrice {
+    width: 100%;
+    height: 20.2rem;
+    border-radius: 0.6rem;
+    border: 1px solid #D9D9D9;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.2rem;
+}
+
+.orderPrice h3 {
+    width: 15.4rem;
+    height: 2.5rem;
+    font-family: Barlow;
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 2.476rem;
+    text-align: left;
+    color: #292929;
+    margin: 4.2rem 0 0 4.9rem;
+    padding: 0;
+}
+
+
+.orderPrice h4 {
+    width: auto;
+    height: 2.5rem;
+    font-family: Barlow;
+    font-size: 1.8rem;
+    font-weight: 600;
+    line-height: 2.476rem;
+    text-align: left;
+    color: #5F5F5F;
+    margin: 0;
+    padding: 0;
+
+}
+
+.orderPrice-red {
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    margin: 1.2rem 0 0 4.9rem
+}
+
+.dough-selection select {
+    width: 16.328rem;
+    height: 3.726rem;
 }

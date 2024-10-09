@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import "./OrderPizza.css"
 import InputMapping from './OrderScreenComponents/InputMapping';
 import { useHistory } from "react-router-dom";
+import { FormGroup, Label, Input } from 'reactstrap';
+import axios from "axios";
 
 function OrderPizza() {
 
@@ -24,17 +26,32 @@ function OrderPizza() {
     const [pizzaToppings, setPizzaToppings] = useState([]);
     const [quantity, setQuantity] = useState(1);
     const [selectedOption, setSelectedOption] = useState("kucuk");
+    const [price, setPrice] = useState(0);
+    const [doughThickness, setDoughThickness] = useState("");
+    const [orderText, setOrderText] = useState()
+    const [isValid, setIsValid] = useState(false);
+
     const history = useHistory();
 
     const handleChange = (event) => {
-        if (event.target.name === 'ekMalzemeler' && event.target.checked) {
-            setPizzaToppings([...pizzaToppings, event.target.value]);
-        } else if (event.target.name === 'ekMalzemeler' && !event.target.checked) {
-            setPizzaToppings(pizzaToppings.filter((malzeme) => malzeme !== event.target.value));
+        console.log(event.target)
+        if (event.target.id === "ekMalzemeler" && event.target.checked) {
+            setPizzaToppings([...pizzaToppings, event.target.name]);
+        } else if (event.target.id === "ekMalzemeler" && !event.target.checked) {
+            setPizzaToppings(pizzaToppings.filter((malzeme) => malzeme !== event.target.name));
+
         }
 
         else if (event.target.name === 'sizeSelection' && event.target.checked) {
             setSelectedOption(event.target.value);
+        }
+
+        else if (event.target.id === 'selectedDough') {
+            setDoughThickness(event.target.value);
+        }
+
+        else if (event.target.id === 'orderNote') {
+            setOrderText(event.target.value);
         }
     };
 
@@ -51,13 +68,45 @@ function OrderPizza() {
         incrementQuantity();
     }, [quantity])
 
-    const handleOrder = () => {
-        history.push('/order-pizza/success');
-    }
+    const handleSubmit = (event) => {
 
+        event.preventDefault();
+
+        axios
+            .post('https://reqres.in/api/pizza', { pizzaToppings, selectedOption, quantity, doughThickness })
+            .then((res) => {
+                const pizzaData = res.data;
+                console.log(res.data);
+                if (pizzaData) {
+                    history.push('/order-pizza/success');
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+
+    };
+
+
+    useEffect(() => {
+        setPrice(pizzaToppings.length * 5);
+    }, [pizzaToppings]);
+
+    useEffect(() => {
+
+        if (
+            doughThickness !== "" &&
+            pizzaToppings.length >= 4 &&
+            (orderText && orderText.length >= 3)
+        ) {
+            setIsValid(true);
+        } else {
+            setIsValid(false);
+        }
+    }, [handleChange]);
 
     return (
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", background: "white" }}>
             <div className="orderHeader">
                 <h1>Teknolojik Yemekler</h1>
                 <h2>Anasayfa - <span className="siparis-olustur" >Sipariş Oluştur</span></h2>
@@ -150,7 +199,7 @@ function OrderPizza() {
                                 margin: "0",
                                 padding: "0",
                             }}>Hamur seç <span style={{ color: "red" }}>*</span></p>
-                            <select name="selectedDough">
+                            <select id="selectedDough" onChange={handleChange} >
                                 <option value="" selected disabled hidden>Hamur Kalınlığı</option>
                                 <option value="ince">İnce Hamur</option>
                                 <option value="klasik">Klasik Hamur</option>
@@ -159,41 +208,64 @@ function OrderPizza() {
                         </label>
                     </div>
                 </div>
-                <div>
+                <div className="additionalIngredients">
                     <p>Ek Malzemeler</p>
                     <InputMapping
-                        name="ekMalzemeler"
+                        id="ekMalzemeler"
                         malzemeler={malzemeler}
                         handleChange={handleChange}
                         baslik="En Fazla 10 malzeme seçebilirsiniz. 5₺"
                     />
                 </div>
-                <div>
-                    <label htmlFor="ekNot">Sipariş Notu</label>
-                    <textarea
-                        type="textarea"
-                        onChange={handleChange}
-                        name="siparisNotu"
-                        placeholder="Siparişine eklemek istediğin bir not var mı?"
-                        id="ekNot"
-                    ></textarea>
+                <div style={{ width: "100%" }}>
+                    <FormGroup style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "1.6rem",
+                        width: "100%",
+                        paddingBottom: "4rem",
+                        borderBottom: "1px solid #5F5F5F80"
+                    }}>
+                        <Label for="exampleText">
+                            <span style={{
+                                fontFamily: "Barlow",
+                                fontSize: "2.2rem",
+                                fontWeight: "600",
+                                lineHeight: "2.476rem",
+                                textAlign: "left",
+                                color: "#292929",
+
+                            }}>Sipariş Notu</span>
+                        </Label>
+                        <Input style={{
+                            fontSize: "1.8rem",
+                            borderRadius: "6px",
+                            border: "1px solid #D9D9D9",
+                            fontFamily: "Barlow",
+                            fontWeight: "500",
+                            lineHeight: "5.6rem",
+                            textAlign: "left",
+                            padding: "0 5%",
+                        }}
+                            id="orderNote"
+                            name="text"
+                            type="textarea"
+                            rows="2"
+                            placeholder="Siparişine eklemek istediğin bir not var mı?"
+                            onChange={handleChange}
+                        />
+                    </FormGroup>
                 </div>
-                <hr style={{
-                    width: "100%",
-                    border: "1px",
-                    display: "none",
-                }} />
-                <div style={{
-                    width: "100%",
-                    height: "20.2rem",
-                    borderRadius: "0.6rem",
-                    border: "1px",
-                }}>
+                <div className="orderPrice">
                     <h3>Sipariş Toplamı</h3>
-                    <h4>Seçimler</h4>
-                    <h4>{pizzaToppings.length * 5}₺</h4>
-                    <h4>Toplam</h4>
-                    <h4>{quantity * (85.50 + (pizzaToppings.length * 5))}₺</h4>
+                    <div style={{ display: "flex", justifyContent: "space-between", width: "70%", margin: "2.2rem 0 0 4.9rem" }}>
+                        <h4>Seçimler</h4>
+                        <h4>{price.toFixed(2)}₺</h4>
+                    </div>
+                    <div className="orderPrice-red">
+                        <h4 style={{ color: "red" }}>Toplam</h4>
+                        <h4 style={{ color: "red" }}>{(quantity * (85.50 + price)).toFixed(2)}₺</h4>
+                    </div>
                 </div>
                 <div className="orderLastPart">
                     <div className="orderLast-1">
@@ -205,8 +277,8 @@ function OrderPizza() {
                             +
                         </button>
                     </div>
-                    <div className="orderLast-2">
-                        <button className="orderButton" onClick={handleOrder}>
+                    <div className="orderLast-1">
+                        <button className="orderButton" onClick={handleSubmit} disabled={!isValid}>
                             SİPARİŞ VER
                         </button>
                     </div>
@@ -214,6 +286,6 @@ function OrderPizza() {
             </div >
         </div >
     )
-}
+};
 
 export default OrderPizza
