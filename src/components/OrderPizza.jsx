@@ -102,7 +102,7 @@ function OrderPizza(props) {
                                 margin: "0",
                                 padding: "0",
                             }}>Hamur seç <span style={{ color: "red" }}>*</span></p>
-                            <select id="selectedDough" onChange={handleChange} >
+                            <select id="selectedDough" onChange={handleChange} data-cy="selectedDough" >
                                 <option value="" selected disabled hidden>Hamur Kalınlığı</option>
                                 <option value="ince">İnce Hamur</option>
                                 <option value="klasik">Klasik Hamur</option>
@@ -156,6 +156,7 @@ function OrderPizza(props) {
                             rows="2"
                             placeholder="Siparişine eklemek istediğin bir not var mı?"
                             onChange={handleChange}
+                            data-cy="orderNote"
                         />
                     </FormGroup>
                 </div>
@@ -181,7 +182,7 @@ function OrderPizza(props) {
                         </button>
                     </div>
                     <div className="orderLast-1">
-                        <button className="orderButton" onClick={handleSubmit} disabled={!isValid}>
+                        <button className="orderButton" onClick={handleSubmit} disabled={!isValid} data-cy="submit-button">
                             SİPARİŞ VER
                         </button>
                     </div>

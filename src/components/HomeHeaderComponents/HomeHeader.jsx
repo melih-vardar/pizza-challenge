@@ -9,7 +9,7 @@ function HomeHeader() {
                 <h2>fırsatı kaçırma</h2>
                 <h3>KOD ACIKTIRIR PİZZA, DOYURUR</h3>
                 <Link to="/order-pizza">
-                    <button>
+                    <button data-cy="button-text">
                         <span id="button-text">ACIKTIM</span>
                     </button>
                 </Link>

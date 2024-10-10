@@ -9,7 +9,6 @@ function HomePage(props) {
         <>
             <HomeHeader />
             <HomeBody headerNavList={headerNavList} additionalPartNavList={additionalPartNavList} additionalPartCard={additionalPartCard} />
-            <HomeFooter footerNavList={footerNavList} footerMenuList={footerMenuList} footerInstagram={footerInstagram} />
         </>
     );
 };

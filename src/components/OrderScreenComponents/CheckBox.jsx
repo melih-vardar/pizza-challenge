@@ -27,6 +27,7 @@ function CheckBox({ name, id, handleChange }) {
                     onChange={handleChange}
                     name={name}
                     id={id}
+                    data-cy={name}
                 />
                 <span style={{ width: "100%" }}>{name}</span>
             </label>

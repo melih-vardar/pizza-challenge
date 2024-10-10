@@ -6,6 +6,7 @@ import HomePage from './components/HomePage'
 import Success from './components/Success'
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+import HomeFooter from './components/HomeFooterComponents/HomeFooter'
 
 const headerNavList = [
   {
@@ -151,7 +152,7 @@ const malzemeler = [
   "Kanada Jambonu",
   "Soğan",
   "Mısır",
-  "Jalepeno",
+  "Jalapeno",
   "Biber",
   "Ananas",
   "Sosis",
@@ -220,16 +221,16 @@ function App() {
   }, [pizzaToppings, quantity]);
 
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
 
     event.preventDefault();
 
-    axios
+    await axios
       .post('https://reqres.in/api/pizza', { pizzaToppings, selectedOption, quantity, doughThickness })
       .then((res) => {
         setPizzaData(res.data);
         console.log(res.data);
-        if (pizzaData) {
+        if (res.data) {
           history.push('/order-pizza/success');
         }
       })
@@ -261,7 +262,7 @@ function App() {
     <>
       <Switch>
         <Route path="/" exact>
-          <HomePage headerNavList={headerNavList} additionalPartNavList={additionalPartNavList} additionalPartCard={additionalPartCard} footerNavList={footerNavList} footerMenuList={footerMenuList} footerInstagram={footerInstagram} />
+          <HomePage headerNavList={headerNavList} additionalPartNavList={additionalPartNavList} additionalPartCard={additionalPartCard} />
         </Route>
         <Route path="/order-pizza" exact>
           <OrderPizza pizzaToppings={pizzaToppings} quantity={quantity} selectedOption={selectedOption} doughThickness={doughThickness} price={price} handleChange={handleChange} decrementQuantity={decrementQuantity} incrementQuantity={incrementQuantity} orderText={orderText} malzemeler={malzemeler} pizzaData={pizzaData} handleSubmit={handleSubmit} isValid={isValid} totalPrice={totalPrice} />
@@ -270,6 +271,7 @@ function App() {
           <Success pizzaData={pizzaData} price={price} totalPrice={totalPrice} />
         </Route>
       </Switch>
+      <HomeFooter footerNavList={footerNavList} footerMenuList={footerMenuList} footerInstagram={footerInstagram} />
     </>
   )
 }
