@@ -188,7 +188,7 @@ body {
 }
 
 #lezzetus-card {
-  background-image: url("Assets/Iteration-2-aseets/cta/kart-1.png");
+  background-image: url("../Assets/Iteration-2-aseets/cta/kart-1.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -292,7 +292,7 @@ body {
   height: 27rem;
   border-radius: 1.2rem;
   background: #292929;
-  background-image: url("Assets/Iteration-2-aseets/cta/kart-2.png");
+  background-image: url("/Assets/Iteration-2-aseets/cta/kart-2.png");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -346,7 +346,7 @@ body {
   height: 27rem;
   border-radius: 1.2rem;
   background: #FFEECC;
-  background-image: url("Assets/Iteration-2-aseets/cta/kart-3.png");
+  background-image: url("/Assets/Iteration-2-aseets/cta/kart-3.png");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
