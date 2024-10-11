@@ -1,10 +1,9 @@
 import React from 'react'
 import HomeHeader from './HomeHeaderComponents/HomeHeader';
 import HomeBody from './HomeBodyComponents/HomeBody';
-import HomeFooter from './HomeFooterComponents/HomeFooter';
 
 function HomePage(props) {
-    const { headerNavList, additionalPartNavList, additionalPartCard, footerNavList, footerMenuList, footerInstagram } = props;
+    const { headerNavList, additionalPartNavList, additionalPartCard } = props;
     return (
         <>
             <HomeHeader />

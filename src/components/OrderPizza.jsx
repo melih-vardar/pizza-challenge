@@ -169,9 +169,9 @@ function OrderPizza(props) {
                             }}>Hamur seç <span style={{ color: "red" }}>*</span></p>
                             <select id="selectedDough" onChange={handleChange} data-cy="selectedDough" >
                                 <option value="" selected disabled hidden>-Hamur Kalınlığı Seç-</option>
-                                <option value="ince">İnce Hamur</option>
-                                <option value="klasik">Klasik Hamur</option>
-                                <option value="kalin">Kalın Hamur</option>
+                                <option value="Süpper İnce">Süpper İnce Hamur</option>
+                                <option value="Klasik">Klasik Hamur</option>
+                                <option value="Kalın">Kalın Hamur</option>
                             </select>
                         </label>
                     </div>

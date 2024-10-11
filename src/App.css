@@ -526,6 +526,7 @@ body {
   padding: 0;
   position: relative;
   top: -1.3rem;
+  margin: 0 0 5.8rem 0;
 }
 
 .tanitim {
@@ -1033,6 +1034,7 @@ footer {
     height: 43rem;
     gap: 3.2rem;
     flex-direction: row;
+    margin: 0 0 6.4rem 0;
   }
 
   .tanitim {
@@ -1050,7 +1052,7 @@ footer {
 
   footer {
     height: 62.525rem;
-    margin-top: 6.4rem;
+    margin-top: 0;
   }
 
   .footer-first-frame {

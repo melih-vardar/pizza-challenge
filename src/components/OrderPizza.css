@@ -696,144 +696,14 @@ html {
     }
 
     /* price part */
-    .orderPrice-a {
-        display: flex;
-        justify-content: space-between;
-        width: 70%;
-        margin: 2.2rem 0 0 4.9rem;
-    }
-
-    .orderLastPart {
-        display: flex;
-        gap: 2rem;
-        align-items: stretch;
-        width: 100%;
-        height: 5.6rem;
-
-    }
-
-    .orderLast-1 {
-        width: 50%;
-        height: 100%;
-        display: flex;
-    }
-
-
-    .changeButton {
-        background: #FDC913;
-        border: none;
-        border-radius: 0.5rem;
-        cursor: pointer;
-        width: 33.3%;
-        height: 100%;
-        padding: 1.45rem 0 1.45rem 0;
-        border-radius: 0.6rem 0 0 0.6rem;
-        font-family: Barlow;
-        font-size: 2.2rem;
-        font-weight: 700;
-        line-height: 2.88rem;
-        text-align: center;
-        color: #000000;
-
-    }
-
-    .quantity {
-        background-color: white;
-        border: 1px solid #D9D9D9;
-        border-radius: 0.5rem;
-        width: 33.3%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        font-family: Barlow;
-        font-size: 2.2rem;
-        font-weight: 400;
-        line-height: 2.64rem;
-        text-align: center;
-
-    }
-
-    .order-last2 {
-        width: 50%;
-        height: 100%;
-        background: #FDC913;
-    }
-
-    .orderButton {
-        width: 100%;
-        height: 100%;
-        border-radius: 0.6rem;
-        background: #FDC913;
-
-    }
-
-    .orderPrice {
-        width: 35rem;
-        height: 20.2rem;
-        border-radius: 0.6rem;
-        border: 1px solid #D9D9D9;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1.2rem;
-    }
-
-    .orderPrice h3 {
-        width: 15.4rem;
-        height: 2.5rem;
-        font-family: Barlow;
-        font-size: 2rem;
-        font-weight: 600;
-        line-height: 2.476rem;
-        text-align: left;
-        color: #292929;
-        margin: 4.2rem 0 0 4.9rem;
-        padding: 0;
-    }
-
-
-    .orderPrice h4 {
-        width: auto;
-        height: 2.5rem;
-        font-family: Barlow;
-        font-size: 1.8rem;
-        font-weight: 600;
-        line-height: 2.476rem;
-        text-align: left;
-        color: #5F5F5F;
-        margin: 0;
-        padding: 0;
-
-    }
-
-    .orderPrice-red {
-        display: flex;
-        justify-content: space-between;
-        width: 70%;
-        margin: 1.2rem 0 0 4.9rem
-    }
 
     .orderPriceContainerAdaptive {
-        width: 100%;
-        height: 34.2rem;
-        display: flex;
-        flex-direction: column;
         justify-content: flex-start;
         align-items: flex-end;
         gap: 0;
     }
 
     .orderPrice {
-        /* width: 100%;
-        height: 20.2rem;
-        border-radius: 0.6rem;
-        border: 1px solid #D9D9D9;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1.2rem; */
-
         height: 19.7rem;
         width: 64%;
     }
