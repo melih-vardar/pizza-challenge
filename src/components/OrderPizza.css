@@ -141,6 +141,8 @@ html {
     font-size: 2rem;
     font-weight: 400;
     line-height: 2.88rem;
+    color: #5F5F5F;
+    margin: 0 0 4rem 0;
 }
 
 .order-first-form {
@@ -212,8 +214,15 @@ html {
     color: #292929;
     margin: 0;
     padding: 0;
+
 }
 
+.orderPrice-a {
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    margin: 2.2rem 0 0 4.9rem;
+}
 
 .orderLastPart {
     display: flex;
@@ -226,6 +235,12 @@ html {
 }
 
 .orderLast-1 {
+    width: 50%;
+    height: 100%;
+    display: flex;
+}
+
+.orderLast-2 {
     width: 50%;
     height: 100%;
     display: flex;
@@ -330,4 +345,516 @@ html {
 .dough-selection select {
     width: 16.328rem;
     height: 3.726rem;
+}
+
+.ekMalzemelerAciklama {
+    width: 100%;
+    height: 5.6rem;
+    font-family: Barlow;
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 5.6rem;
+    text-align: left;
+}
+
+.ekMalzemelerForm {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 2rem;
+    width: 50%;
+    height: 33.5rem;
+}
+
+.ekMalzemelerLabel {
+    width: 100%;
+    height: auto;
+    font-family: Barlow;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 28.8px;
+    text-align: left;
+    color: #5F5F5F;
+
+    display: flex;
+    gap: 1.1rem;
+}
+
+#ekMalzemelerText {
+    width: 100%;
+}
+
+#checkmark {
+    display: none;
+}
+
+.ekMalzemelerInput {
+    width: 2rem;
+    height: 2.054rem;
+}
+
+.ekMalzemelerContainer {
+    width: 100%;
+    float: left;
+}
+
+#orderNote {
+    font-size: 1.8rem;
+    border-radius: 6px;
+    border: 1px solid #d9d9d9;
+    font-family: barlow;
+    font-weight: 500;
+    line-height: 5.6rem;
+    text-align: left;
+    padding: 0 5%;
+}
+
+.orderPriceContainerAdaptive {
+    width: 100%;
+    height: 34.2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4rem;
+}
+
+/* for desktop part*/
+
+.pizza-image {
+    display: none;
+}
+
+.order-textbox-desktop2 {
+    display: none;
+}
+
+.siparis-olustur-desktop {
+    display: none;
+}
+
+.after-header-desktop {
+
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.size-selection-desktop {
+    display: none;
+}
+
+@media (min-width: 1920px) {
+
+    .orderHeader {
+        height: 13.8rem;
+    }
+
+    .orderHeader h2 {
+        display: none;
+    }
+
+    .after-header-desktop {
+
+        width: 100%;
+        background: #FAF7F2;
+        display: flex;
+        flex-direction: column;
+        align-items: center
+    }
+
+    .pizza-image {
+        display: block;
+    }
+
+
+    .order-textbox-desktop {
+        margin: 0 0 4.8rem 0;
+    }
+
+    .order-textbox-desktop2 {
+        margin: 0 0 2rem 0;
+        display: block;
+    }
+
+    .order-textbox-desktop2 {
+        display: flex;
+        justify-content: flex-start;
+        width: 21.3%;
+    }
+
+    .order-textbox-desktop2 h1 {
+        width: 18.3rem;
+        height: 2.9rem;
+        font-family: Barlow;
+        font-size: 1.6rem;
+        font-weight: 500;
+        line-height: 2.88rem;
+        color: #5F5F5F;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        gap: 0.4rem;
+    }
+
+
+    .siparis-olustur-desktop {
+        color: #CE2829;
+        margin: 0;
+        padding: 0;
+        display: block;
+    }
+
+    .order-textbox {
+        width: 21.3%;
+    }
+
+    .order-rest {
+        width: 21.3%;
+
+    }
+
+    .order-rest p {
+        font-size: 1.6rem;
+        margin: 0;
+    }
+
+    .radio-selection {
+        display: none;
+    }
+
+    .size-selection {
+        display: none;
+    }
+
+    .size-selection-desktop {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.94rem;
+        width: 50%;
+
+    }
+
+    .order-first-form {
+        justify-content: flex-start;
+        width: 100%;
+    }
+
+    .size-btn-container {
+        display: flex;
+        gap: 1.72rem;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+
+
+    .dough-selection {
+        width: 50%;
+        margin-left: 6rem;
+    }
+
+    .sizeSelection-btn {
+        background: #FAF7F2;
+        color: #5F5F5F;
+        font-family: monospace;
+        font-size: 16px;
+        border: 0;
+        cursor: pointer;
+        position: relative;
+        width: 100%;
+        height: 47.75px;
+        border-radius: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .sizeSelection-btn.active {
+        background: #FFEECC;
+        outline: none;
+    }
+
+    .dough-selection select {
+        width: 100%;
+        height: 56px;
+        border-radius: 6px;
+        border: none;
+        background: #FAF7F2;
+        font-family: Barlow;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 56px;
+        text-align: left;
+        color: #5F5F5F;
+    }
+
+    .additionalIngredients {
+        gap: 0;
+        height: 42.8rem;
+        width: 100%;
+    }
+
+    .additionalIngredients p {
+        font-size: 2rem;
+    }
+
+    .ekMalzemelerContainer {
+        width: 90%;
+    }
+
+    .ekMalzemelerLabel {
+        position: relative;
+        margin-bottom: 13px;
+        cursor: pointer;
+        font-family: Barlow;
+        text-align: left;
+        color: #5F5F5F;
+        font-size: 1.4rem;
+        font-weight: 700;
+        line-height: 2.88rem;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        display: flex;
+        align-items: center;
+
+    }
+
+    .ekMalzemelerAciklama {
+        font-size: 1.6rem;
+    }
+
+    .ekMalzemelerInput {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 4.5rem;
+        width: 4.5rem;
+    }
+
+    #checkmark {
+        display: block;
+
+        height: 4.5rem;
+        width: 4.5rem;
+        background: #FAF7F2;
+
+
+    }
+
+    .ekMalzemelerLabel:hover input~#checkmark {
+        background: #ccc;
+
+    }
+
+    .ekMalzemelerLabel input:checked~#checkmark {
+        background: #FDC913;
+        width: 4.5rem;
+        height: 4.5rem;
+    }
+
+    #checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
+
+    .ekMalzemelerLabel input:checked~#checkmark:after {
+        display: block;
+    }
+
+    .ekMalzemelerLabel #checkmark:after {
+        left: 15px;
+        top: 9px;
+        width: 10px;
+        height: 20px;
+        border: solid black;
+        border-width: 0 3px 3px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+
+    }
+
+    .ekMalzemelerForm {
+
+        gap: 1.3rem;
+        width: 45%;
+        height: 35.5rem;
+    }
+
+    #ekMalzemelerText {
+        width: 68%;
+    }
+
+    #orderNote {
+        width: 90%;
+    }
+
+    /* price part */
+    .orderPrice-a {
+        display: flex;
+        justify-content: space-between;
+        width: 70%;
+        margin: 2.2rem 0 0 4.9rem;
+    }
+
+    .orderLastPart {
+        display: flex;
+        gap: 2rem;
+        align-items: stretch;
+        width: 100%;
+        height: 5.6rem;
+
+    }
+
+    .orderLast-1 {
+        width: 50%;
+        height: 100%;
+        display: flex;
+    }
+
+
+    .changeButton {
+        background: #FDC913;
+        border: none;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        width: 33.3%;
+        height: 100%;
+        padding: 1.45rem 0 1.45rem 0;
+        border-radius: 0.6rem 0 0 0.6rem;
+        font-family: Barlow;
+        font-size: 2.2rem;
+        font-weight: 700;
+        line-height: 2.88rem;
+        text-align: center;
+        color: #000000;
+
+    }
+
+    .quantity {
+        background-color: white;
+        border: 1px solid #D9D9D9;
+        border-radius: 0.5rem;
+        width: 33.3%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        font-family: Barlow;
+        font-size: 2.2rem;
+        font-weight: 400;
+        line-height: 2.64rem;
+        text-align: center;
+
+    }
+
+    .order-last2 {
+        width: 50%;
+        height: 100%;
+        background: #FDC913;
+    }
+
+    .orderButton {
+        width: 100%;
+        height: 100%;
+        border-radius: 0.6rem;
+        background: #FDC913;
+
+    }
+
+    .orderPrice {
+        width: 35rem;
+        height: 20.2rem;
+        border-radius: 0.6rem;
+        border: 1px solid #D9D9D9;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.2rem;
+    }
+
+    .orderPrice h3 {
+        width: 15.4rem;
+        height: 2.5rem;
+        font-family: Barlow;
+        font-size: 2rem;
+        font-weight: 600;
+        line-height: 2.476rem;
+        text-align: left;
+        color: #292929;
+        margin: 4.2rem 0 0 4.9rem;
+        padding: 0;
+    }
+
+
+    .orderPrice h4 {
+        width: auto;
+        height: 2.5rem;
+        font-family: Barlow;
+        font-size: 1.8rem;
+        font-weight: 600;
+        line-height: 2.476rem;
+        text-align: left;
+        color: #5F5F5F;
+        margin: 0;
+        padding: 0;
+
+    }
+
+    .orderPrice-red {
+        display: flex;
+        justify-content: space-between;
+        width: 70%;
+        margin: 1.2rem 0 0 4.9rem
+    }
+
+    .orderPriceContainerAdaptive {
+        width: 100%;
+        height: 34.2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-end;
+        gap: 0;
+    }
+
+    .orderPrice {
+        /* width: 100%;
+        height: 20.2rem;
+        border-radius: 0.6rem;
+        border: 1px solid #D9D9D9;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.2rem; */
+
+        height: 19.7rem;
+        width: 64%;
+    }
+
+    .order-lastPart {
+        height: auto;
+        display: block;
+        gap: 1rem;
+    }
+
+    .orderLast-1 {
+        width: 32%;
+        height: 5.7rem;
+        margin-bottom: 20rem;
+        position: relative;
+        bottom: 20rem;
+
+    }
+
+    .orderLast-2 {
+        width: 68%;
+    }
+
 }

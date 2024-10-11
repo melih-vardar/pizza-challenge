@@ -167,7 +167,7 @@ function App() {
 
   const [pizzaToppings, setPizzaToppings] = useState([]);
   const [quantity, setQuantity] = useState(1);
-  const [selectedOption, setSelectedOption] = useState("kucuk");
+  const [selectedOption, setSelectedOption] = useState("S");
   const [doughThickness, setDoughThickness] = useState("");
   const [price, setPrice] = useState(0);
   const [totalPrice, setTotalPrice] = useState(85.50);
@@ -177,7 +177,7 @@ function App() {
   const history = useHistory();
 
   const handleChange = (event) => {
-    console.log(event.target)
+    console.log(event.target.value)
     if (event.target.id === "ekMalzemeler" && event.target.checked) {
       setPizzaToppings([...pizzaToppings, event.target.name]);
     } else if (event.target.id === "ekMalzemeler" && !event.target.checked) {
@@ -220,6 +220,9 @@ function App() {
     setTotalPrice((quantity * (85.50 + price)));
   }, [pizzaToppings, quantity]);
 
+  const handleButton = ((event) => {
+    setSelectedOption(event.currentTarget.value);
+  })
 
   const handleSubmit = async (event) => {
 
@@ -229,7 +232,7 @@ function App() {
       .post('https://reqres.in/api/pizza', { pizzaToppings, selectedOption, quantity, doughThickness })
       .then((res) => {
         setPizzaData(res.data);
-        console.log(res.data);
+        // console.log(res.data);
         if (res.data) {
           history.push('/order-pizza/success');
         }
@@ -243,9 +246,9 @@ function App() {
   const [isValid, setIsValid] = useState(false);
 
   useEffect(() => {
-    console.log(doughThickness)
-    console.log(pizzaToppings)
-    console.log(orderText)
+    // console.log(doughThickness)
+    // console.log(pizzaToppings)
+    // console.log(orderText)
     if (
       doughThickness !== "" &&
       pizzaToppings.length >= 4 &&
@@ -265,7 +268,7 @@ function App() {
           <HomePage headerNavList={headerNavList} additionalPartNavList={additionalPartNavList} additionalPartCard={additionalPartCard} />
         </Route>
         <Route path="/order-pizza" exact>
-          <OrderPizza pizzaToppings={pizzaToppings} quantity={quantity} selectedOption={selectedOption} doughThickness={doughThickness} price={price} handleChange={handleChange} decrementQuantity={decrementQuantity} incrementQuantity={incrementQuantity} orderText={orderText} malzemeler={malzemeler} pizzaData={pizzaData} handleSubmit={handleSubmit} isValid={isValid} totalPrice={totalPrice} />
+          <OrderPizza pizzaToppings={pizzaToppings} quantity={quantity} selectedOption={selectedOption} doughThickness={doughThickness} price={price} handleChange={handleChange} decrementQuantity={decrementQuantity} incrementQuantity={incrementQuantity} orderText={orderText} malzemeler={malzemeler} pizzaData={pizzaData} handleSubmit={handleSubmit} isValid={isValid} totalPrice={totalPrice} handleButton={handleButton} />
         </Route>
         <Route path="/order-pizza/success">
           <Success pizzaData={pizzaData} price={price} totalPrice={totalPrice} />

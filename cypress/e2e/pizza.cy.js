@@ -2,7 +2,7 @@ describe('Order Page', () => {
 
     beforeEach(() => {
         cy.visit("http://localhost:5173/order-pizza")
-
+        cy.viewport(1920, 1080)
     })
 
     // ~~ inputa bir metin giren test
@@ -68,7 +68,7 @@ describe('Order Page', () => {
                 cy.get('[data-cy="orderNote"]').type(randomText)
                 cy.get('[data-cy="selectedDough"]').select("ince");
                 cy.get('[data-cy="submit-button"]').should("be.enabled");
-                cy.get('[data-cy="submit-button"]').click();
+                cy.get('[data-cy="submit-button"]').click({ multiple: true });
                 cy.intercept('POST', 'https://reqres.in/api/pizza').as('{"pizzaToppings":["Pepperoni","Kanada Jambonu","Soğan","Mısır"],"selectedOption":"kucuk","quantity":1,"doughThickness":"klasik","id":"765","createdAt":"2024-10-10T17:24:21.045Z"}')
                 cy.url().should('include', '/success');
             })
