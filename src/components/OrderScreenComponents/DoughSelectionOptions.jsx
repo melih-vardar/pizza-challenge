@@ -1,10 +1,10 @@
 import React from 'react'
 
 function DoughSelectionOptions({ data }) {
-    const { value, title, hiddenOrNot } = data;
+    const { value, title, selected, disabled, hidden } = data;
     return (
         <>
-            <option value={value} {...hiddenOrNot}>{title}</option>
+            <option value={value} selected={selected} disabled={disabled} hidden={hidden}>{title}</option>
         </>
     )
 }

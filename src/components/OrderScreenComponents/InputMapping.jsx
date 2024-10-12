@@ -25,7 +25,7 @@ function InputMapping({ handleChange, baslik, id }) {
                 {malzemeler &&
                     malzemeler.map((data, index) => {
                         return (
-                            <CheckBox handleChange={handleChange} name={data} key={index} id={id} />
+                            <CheckBox handleChange={handleChange} value={data} key={index} id={id} />
                         );
                     })}
             </form>

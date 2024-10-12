@@ -10,75 +10,111 @@ import DoughSelectionMapping from "./OrderScreenComponents/DoughSelectionMapping
 
 const sizeSelectionOptions = ["S", "M", "L"]
 
+const initialForm = {
+    pizzaToppings: [],
+    quantity: 1,
+    selectedOption: "S",
+    selectedDough: "",
+    price: 0,
+    totalPrice: 85.50,
+    orderNote: "",
+};
+
+const initialErrors = {
+    pizzaToppings: false,
+    doughThickness: false,
+    orderText: false,
+}
+
+export const errorMessages = {
+    pizzaToppings: "En az 4 malzeme eklemelisiniz.",
+    doughThickness: "Hamur kalınlığı seçmelisiniz.",
+    orderText: "En az 3 karakterli bir not eklemelisiniz"
+}
+
 function OrderPizza(props) {
 
     const { setPizzaData } = props;
 
-    const [pizzaToppings, setPizzaToppings] = useState([]);
-    const [quantity, setQuantity] = useState(1);
-    const [selectedOption, setSelectedOption] = useState("S");
-    const [doughThickness, setDoughThickness] = useState("");
-    const [price, setPrice] = useState(0);
-    const [totalPrice, setTotalPrice] = useState(85.50);
-    const [orderText, setOrderText] = useState()
+    const [form, setForm] = useState(initialForm)
     const [isValid, setIsValid] = useState(false);
+    const [errors, setErrors] = useState(initialErrors)
 
     const history = useHistory();
 
+
+
     const handleChange = (event) => {
-        console.log(event.target.value)
-        if (event.target.id === "ekMalzemeler" && event.target.checked) {
-            setPizzaToppings([...pizzaToppings, event.target.name]);
-        } else if (event.target.id === "ekMalzemeler" && !event.target.checked) {
-            setPizzaToppings(pizzaToppings.filter((malzeme) => malzeme !== event.target.name));
+        let { id, value, name } = event.target;
+        // console.log(value)
+        // console.log(form.selectedDough)
+        if (id === "pizzaToppings" && event.target.checked) {
+            // setPizzaToppings([...pizzaToppings, event.target.name]);
+            setForm({ ...form, [id]: [...form[id], value] })
+        } else if (id === "pizzaToppings" && !event.target.checked) {
+            // setPizzaToppings(pizzaToppings.filter((malzeme) => malzeme !== event.target.name));
+            setForm({ ...form, [id]: form[id].filter((malzeme) => malzeme !== event.target.value) })
 
         }
 
-        else if (event.target.name === 'sizeSelection' && event.target.checked) {
-            setSelectedOption(event.target.value);
+        else if (name === 'sizeSelection' && event.target.checked) {
+            // setSelectedOption(event.target.value);
+            setForm({ ...form, [name]: value })
         }
 
-        else if (event.target.id === 'selectedDough') {
-            setDoughThickness(event.target.value);
+        else if (id === 'selectedDough') {
+            // setDoughThickness(event.target.value);
+            setForm({ ...form, [id]: value })
+            // console.log(form.selectedDough)
         }
 
-        else if (event.target.id === 'orderNote') {
-            setOrderText(event.target.value);
+        else if (id === 'orderNote') {
+            // setOrderText(event.target.value);
+            setForm({ ...form, [id]: value })
         }
     };
 
-    useEffect(() => {
-        decrementQuantity();
-        incrementQuantity();
-    }, [quantity])
+
 
 
     useEffect(() => {
-        setPrice(pizzaToppings.length * 5);
-    }, [pizzaToppings]);
+        setForm((prevForm) => ({
+            ...prevForm,
+            price: (prevForm.pizzaToppings || []).length * 5
+        }));
+    }, [form.pizzaToppings]);
 
     useEffect(() => {
-        setTotalPrice((quantity * (85.50 + price)));
-    }, [pizzaToppings, quantity]);
+        setForm((prevForm) => ({
+            ...prevForm,
+            totalPrice: (prevForm.quantity * (85.50 + (prevForm.price || 0)))
+        }));
+    }, [form.quantity, form.price]);
 
     useEffect(() => {
-        // console.log(doughThickness)
-        // console.log(pizzaToppings)
-        // console.log(orderText)
+        console.log(form.doughThickness)
+        console.log(form.pizzaToppings)
+        console.log(form.orderText)
+        console.log(form)
         if (
-            doughThickness !== "" &&
-            pizzaToppings.length >= 4 &&
-            (orderText && orderText.length >= 3)
+            form["selectedDough"] !== "" &&
+            form["pizzaToppings"].length >= 4 &&
+            (form["orderNote"] && form["orderNote"].length >= 3)
         ) {
             setIsValid(true);
         } else {
             setIsValid(false);
         }
-    }, [handleChange]);
+    }, [form]);
 
 
     const handleButton = ((event) => {
-        setSelectedOption(event.currentTarget.value);
+        const { value, name } = event.target;
+        setForm((prevForm) => ({
+            ...prevForm,
+            [name]: event.currentTarget.value,
+            selectedOption: event.currentTarget.value,
+        }));
     })
 
     const handleSubmit = async (event) => {
@@ -86,7 +122,7 @@ function OrderPizza(props) {
         event.preventDefault();
 
         await axios
-            .post('https://reqres.in/api/pizza', { pizzaToppings, selectedOption, quantity, doughThickness, price, totalPrice })
+            .post('https://reqres.in/api/pizza', { form })
             .then((res) => {
                 setPizzaData(res.data);
                 console.log(res.data);
@@ -102,13 +138,21 @@ function OrderPizza(props) {
 
 
     const decrementQuantity = () => {
-        if (quantity >= 1)
-            setQuantity((quantity) => quantity - 1)
+        if (form.quantity >= 1) {
+            setForm((prevForm) => ({
+                ...prevForm,
+                quantity: prevForm.quantity - 1
+            }));
+        }
     }
 
     const incrementQuantity = () => {
-        setQuantity((quantity) => quantity + 1)
+        setForm((prevForm) => ({
+            ...prevForm,
+            quantity: prevForm.quantity + 1
+        }));
     }
+
 
     return (
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", background: "white" }}>
@@ -140,14 +184,14 @@ function OrderPizza(props) {
 
             <div className="order-rest" style={{ marginTop: "4rem" }}>
                 <div className="order-first-form">
-                    <RadioMapping selectedOption={selectedOption} handleChange={handleChange} sizeSelectionOptions={sizeSelectionOptions} />
-                    <SizeSelectionMapping selectedOption={selectedOption} handleButton={handleButton} sizeSelectionOptions={sizeSelectionOptions} />
+                    <RadioMapping selectedOption={form.selectedOption} handleChange={handleChange} sizeSelectionOptions={sizeSelectionOptions} />
+                    <SizeSelectionMapping selectedOption={form.selectedOption} handleButton={handleButton} sizeSelectionOptions={sizeSelectionOptions} />
                     <DoughSelectionMapping handleChange={handleChange} />
                 </div>
                 <div className="additionalIngredients">
                     <p>Ek Malzemeler</p>
                     <InputMapping
-                        id="ekMalzemeler"
+                        id="pizzaToppings"
                         handleChange={handleChange}
                         baslik="En Fazla 10 malzeme seçebilirsiniz. 5₺"
                     />
@@ -188,11 +232,11 @@ function OrderPizza(props) {
                         <h3>Sipariş Toplamı</h3>
                         <div className="orderPrice-a" >
                             <h4>Seçimler</h4>
-                            <h4>{price.toFixed(2)}₺</h4>
+                            <h4>{form.price.toFixed(2)}₺</h4>
                         </div>
                         <div className="orderPrice-red">
                             <h4 style={{ color: "red" }}>Toplam</h4>
-                            <h4 style={{ color: "red" }}>{totalPrice.toFixed(2)}₺</h4>
+                            <h4 style={{ color: "red" }}>{form.totalPrice.toFixed(2)}₺</h4>
                         </div>
                     </div>
                     <div className="orderLastPart">
@@ -200,7 +244,7 @@ function OrderPizza(props) {
                             <button className="changeButton" onClick={decrementQuantity}>
                                 -
                             </button>
-                            <span className="quantity">{quantity}</span>
+                            <span className="quantity">{form.quantity}</span>
                             <button className="changeButton" style={{ borderRadius: "0 0.6rem 0.6rem 0" }} onClick={incrementQuantity}>
                                 +
                             </button>

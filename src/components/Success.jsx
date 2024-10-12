@@ -3,7 +3,8 @@ import "./Success.css";
 
 function Success(props) {
     const { pizzaData } = props;
-    const { pizzaToppings, selectedOption, totalPrice, price, doughThickness } = pizzaData;
+    const { form } = pizzaData;
+    const { pizzaToppings, selectedOption, totalPrice, price, selectedDough } = form;
     return (
         <>
             <div className="successHomeBannerMobile">
@@ -26,7 +27,7 @@ function Success(props) {
                 </div>
                 <div className="pizza-details">
                     <h4>Boyut: <span className="pizzaProperties">{selectedOption}</span></h4>
-                    <h4>Hamur: <span className="pizzaProperties">{doughThickness}</span></h4>
+                    <h4>Hamur: <span className="pizzaProperties">{selectedDough}</span></h4>
                     <h4>Ek Malzemeler: <span className="pizzaProperties">{pizzaToppings.join(', ')}</span></h4>
                 </div>
                 <div className="orderPrice-footer">

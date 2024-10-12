@@ -1,19 +1,19 @@
 import React from 'react'
 
-function CheckBox({ name, id, handleChange }) {
+function CheckBox({ value, id, handleChange }) {
     return (
         <div className="ekMalzemelerContainer">
             <label className="ekMalzemelerLabel">
                 <input
                     type="checkbox"
                     onChange={handleChange}
-                    name={name}
+                    value={value}
                     id={id}
-                    data-cy={name}
+                    data-cy={value}
                     className="ekMalzemelerInput"
                 />
                 <span id="checkmark"></span>
-                <span id="ekMalzemelerText">{name}</span>
+                <span id="ekMalzemelerText">{value}</span>
             </label>
         </div >
     );

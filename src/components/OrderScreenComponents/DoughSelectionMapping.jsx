@@ -5,22 +5,30 @@ const doughThicknessOptions = [
     {
         "value": "",
         "title": "-Hamur Kalınlığı Seç-",
-        "hiddenOrNot": "selected disabled hidden",
+        "selected": true,
+        "disabled": true,
+        "hidden": true,
     },
     {
         "value": "Süpper İnce",
         "title": "Süpper İnce Hamur",
-        "hiddenOrNot": "",
+        "selected": false,
+        "disabled": false,
+        "hidden": false,
     },
     {
         "value": "Klasik",
         "title": "Klasik Hamur",
-        "hiddenOrNot": "",
+        "selected": false,
+        "disabled": false,
+        "hidden": false,
     },
     {
         "value": "Kalın",
         "title": "Kalın Hamur",
-        "hiddenOrNot": "",
+        "selected": false,
+        "disabled": false,
+        "hidden": false,
     },
 ]
 
