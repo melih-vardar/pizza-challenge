@@ -43,6 +43,7 @@ function OrderPizza(props) {
     const history = useHistory();
 
     const handleChange = (event) => {
+        console.log(event.target)
         let { id, value, name } = event.target;
 
         if (id === "pizzaToppings" && event.target.checked) {
@@ -53,7 +54,7 @@ function OrderPizza(props) {
         }
 
         else if (name === 'sizeSelection' && event.target.checked) {
-            setForm({ ...form, [name]: value })
+            setForm({ ...form, ['selectedOption']: value })
         }
 
         else if (id === 'selectedDough') {
@@ -96,9 +97,6 @@ function OrderPizza(props) {
 
     };
 
-
-
-
     useEffect(() => {
         setForm((prevForm) => ({
             ...prevForm,
@@ -114,10 +112,7 @@ function OrderPizza(props) {
     }, [form.quantity, form.price]);
 
     useEffect(() => {
-        console.log(form.doughThickness)
-        console.log(form.pizzaToppings)
-        console.log(form.orderText)
-        console.log(form)
+
         if (
             form["selectedDough"] !== "" &&
             form["pizzaToppings"].length >= 4 &&
