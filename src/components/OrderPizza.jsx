@@ -3,8 +3,12 @@ import InputMapping from './OrderScreenComponents/InputMapping';
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import React, { useEffect, useState } from 'react'
-
 import { FormGroup, Label, Input } from 'reactstrap';
+import RadioMapping from "./OrderScreenComponents/RadioMapping";
+import SizeSelectionMapping from "./OrderScreenComponents/SizeSelectionMapping";
+import DoughSelectionMapping from "./OrderScreenComponents/DoughSelectionMapping";
+
+const sizeSelectionOptions = ["S", "M", "L"]
 
 function OrderPizza(props) {
 
@@ -17,24 +21,9 @@ function OrderPizza(props) {
     const [price, setPrice] = useState(0);
     const [totalPrice, setTotalPrice] = useState(85.50);
     const [orderText, setOrderText] = useState()
+    const [isValid, setIsValid] = useState(false);
 
     const history = useHistory();
-
-    const malzemeler = [
-        "Pepperoni",
-        "Kanada Jambonu",
-        "Soğan",
-        "Mısır",
-        "Jalapeno",
-        "Biber",
-        "Ananas",
-        "Sosis",
-        "Tavuk Izgara",
-        "Domates",
-        "Sucuk",
-        "Sarımsak",
-        "Zeytin",
-        "Kabak"]
 
     const handleChange = (event) => {
         console.log(event.target.value)
@@ -58,14 +47,6 @@ function OrderPizza(props) {
         }
     };
 
-    const decrementQuantity = () => {
-        if (quantity >= 1)
-            setQuantity((quantity) => quantity - 1)
-    }
-
-    const incrementQuantity = () => {
-        setQuantity((quantity) => quantity + 1)
-    }
     useEffect(() => {
         decrementQuantity();
         incrementQuantity();
@@ -79,6 +60,22 @@ function OrderPizza(props) {
     useEffect(() => {
         setTotalPrice((quantity * (85.50 + price)));
     }, [pizzaToppings, quantity]);
+
+    useEffect(() => {
+        // console.log(doughThickness)
+        // console.log(pizzaToppings)
+        // console.log(orderText)
+        if (
+            doughThickness !== "" &&
+            pizzaToppings.length >= 4 &&
+            (orderText && orderText.length >= 3)
+        ) {
+            setIsValid(true);
+        } else {
+            setIsValid(false);
+        }
+    }, [handleChange]);
+
 
     const handleButton = ((event) => {
         setSelectedOption(event.currentTarget.value);
@@ -103,22 +100,15 @@ function OrderPizza(props) {
 
     };
 
-    const [isValid, setIsValid] = useState(false);
 
-    useEffect(() => {
-        // console.log(doughThickness)
-        // console.log(pizzaToppings)
-        // console.log(orderText)
-        if (
-            doughThickness !== "" &&
-            pizzaToppings.length >= 4 &&
-            (orderText && orderText.length >= 3)
-        ) {
-            setIsValid(true);
-        } else {
-            setIsValid(false);
-        }
-    }, [handleChange]);
+    const decrementQuantity = () => {
+        if (quantity >= 1)
+            setQuantity((quantity) => quantity - 1)
+    }
+
+    const incrementQuantity = () => {
+        setQuantity((quantity) => quantity + 1)
+    }
 
     return (
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", background: "white" }}>
@@ -150,150 +140,14 @@ function OrderPizza(props) {
 
             <div className="order-rest" style={{ marginTop: "4rem" }}>
                 <div className="order-first-form">
-                    <div className="radio-section">
-                        <form className="size-selection">
-                            <p style={{
-                                fontFamily: "Barlow",
-                                fontSize: "2.2rem",
-                                fontWeight: "600",
-                                lineHeight: "2.476rem",
-                                textAlign: "left",
-                                margin: "0",
-                                padding: "0",
-                            }}>Boyut seç <span style={{ color: "red" }}>*</span></p>
-                            <div className="radio">
-                                <label>
-                                    <input
-                                        type="radio"
-                                        value="S"
-                                        checked={selectedOption === "S"}
-                                        onChange={handleChange}
-                                        name="sizeSelection" />
-                                    <p style={{
-                                        fontFamily: "Barlow",
-                                        fontSize: "2rem",
-                                        fontWeight: "400",
-                                        lineHeight: "5.6rem",
-                                        textAlign: "left",
-                                    }}>S</p>
-                                </label>
-                            </div>
-                            <div className="radio">
-                                <label>
-                                    <input
-                                        type="radio"
-                                        value="M"
-                                        checked={selectedOption === "M"}
-                                        onChange={handleChange}
-                                        name="sizeSelection" />
-                                    <p style={{
-                                        fontFamily: "Barlow",
-                                        fontSize: "2rem",
-                                        fontWeight: "400",
-                                        lineHeight: "5.6rem",
-                                        textAlign: "left",
-                                    }}>M</p>
-                                </label>
-                            </div>
-                            <div className="radio">
-                                <label>
-                                    <input
-                                        type="radio"
-                                        value="L"
-                                        checked={selectedOption === "L"}
-                                        onChange={handleChange}
-                                        name="sizeSelection" />
-                                    <p style={{
-                                        fontFamily: "Barlow",
-                                        fontSize: "2rem",
-                                        fontWeight: "400",
-                                        lineHeight: "5.6rem",
-                                        textAlign: "left",
-                                    }}>L</p>
-                                </label>
-                            </div>
-                        </form>
-                    </div>
-                    <div className="size-selection-desktop">
-                        <p style={{
-                            fontFamily: "Barlow",
-                            fontSize: "2.2rem",
-                            fontWeight: "600",
-                            lineHeight: "2.476rem",
-                            textAlign: "left",
-                            margin: "0",
-                            padding: "0",
-                        }}>Boyut seç <span style={{ color: "red" }}>*</span></p>
-                        <div className="size-btn-container">
-                            <button
-                                className={`sizeSelection-btn ${selectedOption === "S" ? 'active' : ''}`}
-                                type="button"
-                                onClick={handleButton}
-                                value="S"
-                                name="sizeSelection">
-                                <span style={{
-                                    fontFamily: "Barlow",
-                                    fontSize: "16px",
-                                    fontWeight: "500",
-                                    lineHeight: "56px",
-                                    textAlign: "center",
-                                }}>S</span>
-                            </button>
-                            <button
-                                className={`sizeSelection-btn ${selectedOption === "M" ? 'active' : ''}`}
-                                type="button"
-                                onClick={handleButton}
-                                value="M"
-                                name="sizeSelection">
-                                <span style={{
-                                    fontFamily: "Barlow",
-                                    fontSize: "16px",
-                                    fontWeight: "500",
-                                    lineHeight: "56px",
-                                    textAlign: "center",
-                                }}>M</span>
-                            </button>
-                            <button className={`sizeSelection-btn ${selectedOption === "L" ? 'active' : ''}`}
-                                type="button"
-                                onClick={handleButton}
-                                value="L"
-                                name="sizeSelection">
-                                <span style={{
-                                    fontFamily: "Barlow",
-                                    fontSize: "16px",
-                                    fontWeight: "500",
-                                    lineHeight: "56px",
-                                    textAlign: "center",
-
-                                }}>L</span>
-                            </button>
-                        </div>
-                    </div>
-                    <div className="dough-selection">
-                        <label>
-                            <p style={{
-                                fontFamily: "Barlow",
-                                fontSize: "2.2rem",
-                                fontWeight: "600",
-                                lineHeight: "2.476rem",
-                                textAlign: "left",
-                                margin: "0",
-                                padding: "0",
-                            }}>Hamur seç <span style={{ color: "red" }}>*</span></p>
-                            <select id="selectedDough" onChange={handleChange} data-cy="selectedDough" >
-                                <option value="" selected disabled hidden>-Hamur Kalınlığı Seç-</option>
-                                <option value="Süpper İnce">Süpper İnce Hamur</option>
-                                <option value="Klasik">Klasik Hamur</option>
-                                <option value="Kalın">Kalın Hamur</option>
-                            </select>
-                        </label>
-                    </div>
+                    <RadioMapping selectedOption={selectedOption} handleChange={handleChange} sizeSelectionOptions={sizeSelectionOptions} />
+                    <SizeSelectionMapping selectedOption={selectedOption} handleButton={handleButton} sizeSelectionOptions={sizeSelectionOptions} />
+                    <DoughSelectionMapping handleChange={handleChange} />
                 </div>
                 <div className="additionalIngredients">
                     <p>Ek Malzemeler</p>
                     <InputMapping
                         id="ekMalzemeler"
-                        malzemeler={malzemeler}
                         handleChange={handleChange}
                         baslik="En Fazla 10 malzeme seçebilirsiniz. 5₺"
                     />
@@ -307,7 +161,7 @@ function OrderPizza(props) {
                         paddingBottom: "4rem",
                         borderBottom: "1px solid #5F5F5F80"
                     }}>
-                        <Label for="exampleText">
+                        <Label for="orderNote">
                             <span style={{
                                 fontFamily: "Barlow",
                                 fontSize: "2.2rem",

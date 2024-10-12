@@ -1,10 +1,26 @@
 import React from 'react'
 import CheckBox from './CheckBox';
 
-function InputMapping({ malzemeler, handleChange, baslik, id }) {
+const malzemeler = [
+    "Pepperoni",
+    "Kanada Jambonu",
+    "Soğan",
+    "Mısır",
+    "Jalapeno",
+    "Biber",
+    "Ananas",
+    "Sosis",
+    "Tavuk Izgara",
+    "Domates",
+    "Sucuk",
+    "Sarımsak",
+    "Zeytin",
+    "Kabak"]
+
+function InputMapping({ handleChange, baslik, id }) {
     return (
         <>
-            < span className="ekMalzemelerAciklama"> {baslik}</span>
+            <span className="ekMalzemelerAciklama"> {baslik}</span>
             <form className="ekMalzemelerForm">
                 {malzemeler &&
                     malzemeler.map((data, index) => {
