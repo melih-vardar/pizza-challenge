@@ -17,7 +17,7 @@ const malzemeler = [
     "Zeytin",
     "Kabak"]
 
-function InputMapping({ handleChange, baslik, id }) {
+function InputMapping({ handleChange, baslik, id, }) {
     return (
         <>
             <span className="ekMalzemelerAciklama"> {baslik}</span>

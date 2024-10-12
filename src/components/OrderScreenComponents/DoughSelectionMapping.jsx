@@ -1,5 +1,6 @@
 import React from 'react'
 import DoughSelectionOptions from './DoughSelectionOptions';
+import { FormFeedback } from 'reactstrap';
 
 const doughThicknessOptions = [
     {
@@ -34,7 +35,7 @@ const doughThicknessOptions = [
 
 function DoughSelectionMapping(props) {
 
-    const { handleChange } = props;
+    const { handleChange, errors, errorMessages } = props;
 
     return (
         <div className="dough-selection">
@@ -48,7 +49,7 @@ function DoughSelectionMapping(props) {
                     margin: "0",
                     padding: "0",
                 }}>Hamur seç <span style={{ color: "red" }}>*</span></p>
-                <select id="selectedDough" onChange={handleChange} data-cy="selectedDough" >
+                <select id="selectedDough" onChange={handleChange} data-cy="selectedDough" invalid={errorMessages.selectedDough} >
                     {doughThicknessOptions &&
                         doughThicknessOptions.map((data, index) => {
                             return (
@@ -56,6 +57,7 @@ function DoughSelectionMapping(props) {
                             );
                         })}
                 </select>
+                {errors.selectedDough && <FormFeedback data-cy="error-message">{errorMessages.selectedDough}</FormFeedback>}
             </label>
         </div>
     )

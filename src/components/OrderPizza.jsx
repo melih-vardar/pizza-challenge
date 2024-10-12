@@ -3,7 +3,7 @@ import InputMapping from './OrderScreenComponents/InputMapping';
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import React, { useEffect, useState } from 'react'
-import { FormGroup, Label, Input } from 'reactstrap';
+import { FormGroup, Label, Input, FormFeedback } from 'reactstrap';
 import RadioMapping from "./OrderScreenComponents/RadioMapping";
 import SizeSelectionMapping from "./OrderScreenComponents/SizeSelectionMapping";
 import DoughSelectionMapping from "./OrderScreenComponents/DoughSelectionMapping";
@@ -21,15 +21,15 @@ const initialForm = {
 };
 
 const initialErrors = {
-    pizzaToppings: false,
-    doughThickness: false,
-    orderText: false,
+    pizzaToppings: true,
+    selectedDough: true,
+    orderNote: true,
 }
 
 export const errorMessages = {
     pizzaToppings: "En az 4 malzeme eklemelisiniz.",
-    doughThickness: "Hamur kalınlığı seçmelisiniz.",
-    orderText: "En az 3 karakterli bir not eklemelisiniz"
+    selectedDough: "Hamur kalınlığı seçmelisiniz.",
+    orderNote: "En az 3 karakterli bir not eklemelisiniz"
 }
 
 function OrderPizza(props) {
@@ -42,36 +42,58 @@ function OrderPizza(props) {
 
     const history = useHistory();
 
-
-
     const handleChange = (event) => {
         let { id, value, name } = event.target;
-        // console.log(value)
-        // console.log(form.selectedDough)
+
         if (id === "pizzaToppings" && event.target.checked) {
-            // setPizzaToppings([...pizzaToppings, event.target.name]);
             setForm({ ...form, [id]: [...form[id], value] })
         } else if (id === "pizzaToppings" && !event.target.checked) {
-            // setPizzaToppings(pizzaToppings.filter((malzeme) => malzeme !== event.target.name));
             setForm({ ...form, [id]: form[id].filter((malzeme) => malzeme !== event.target.value) })
 
         }
 
         else if (name === 'sizeSelection' && event.target.checked) {
-            // setSelectedOption(event.target.value);
             setForm({ ...form, [name]: value })
         }
 
         else if (id === 'selectedDough') {
-            // setDoughThickness(event.target.value);
             setForm({ ...form, [id]: value })
-            // console.log(form.selectedDough)
         }
 
         else if (id === 'orderNote') {
-            // setOrderText(event.target.value);
             setForm({ ...form, [id]: value })
         }
+
+        // errors
+
+
+        if (id === "pizzaToppings") {
+            const selectedToppings = document.querySelectorAll('input[id="pizzaToppings"]:checked');
+            console.log(event.target)
+            if (selectedToppings.length >= 4)
+                setErrors({ ...errors, [id]: false });
+            else {
+                setErrors({ ...errors, [id]: true })
+            }
+        }
+
+        if (id === "selectedDough") {
+            if (!value == "")
+                setErrors({ ...errors, [id]: false });
+            else {
+                setErrors({ ...errors, [id]: true })
+            }
+        }
+
+        if (id === "orderNote") {
+            console.log(form.orderNote)
+            if (value && value.length >= 3)
+                setErrors({ ...errors, [id]: false });
+            else {
+                setErrors({ ...errors, [id]: true })
+            }
+        }
+
     };
 
 
@@ -186,7 +208,7 @@ function OrderPizza(props) {
                 <div className="order-first-form">
                     <RadioMapping selectedOption={form.selectedOption} handleChange={handleChange} sizeSelectionOptions={sizeSelectionOptions} />
                     <SizeSelectionMapping selectedOption={form.selectedOption} handleButton={handleButton} sizeSelectionOptions={sizeSelectionOptions} />
-                    <DoughSelectionMapping handleChange={handleChange} />
+                    <DoughSelectionMapping handleChange={handleChange} errorMessages={errorMessages} errors={errors} />
                 </div>
                 <div className="additionalIngredients">
                     <p>Ek Malzemeler</p>
@@ -194,7 +216,9 @@ function OrderPizza(props) {
                         id="pizzaToppings"
                         handleChange={handleChange}
                         baslik="En Fazla 10 malzeme seçebilirsiniz. 5₺"
+                        invalid={errors.pizzaToppings}
                     />
+                    {errors.pizzaToppings && <FormFeedback data-cy="error-message">{errorMessages.pizzaToppings}</FormFeedback>}
                 </div>
                 <div style={{ width: "100%" }}>
                     <FormGroup style={{
@@ -224,7 +248,9 @@ function OrderPizza(props) {
                             placeholder="Siparişine eklemek istediğin bir not var mı?"
                             onChange={handleChange}
                             data-cy="orderNote"
+                            invalid={errors.orderNote}
                         />
+                        {errors.orderNote && <FormFeedback data-cy="error-message">{errorMessages.orderNote}</FormFeedback>}
                     </FormGroup>
                 </div>
                 <div className="orderPriceContainerAdaptive">
