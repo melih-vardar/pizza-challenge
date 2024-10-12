@@ -3,8 +3,61 @@ import HomeFooterNav from './HomeFooterNav';
 import FooterMenu from './FooterMenu';
 import FooterInstagram from './FooterInstagram';
 
-function HomeFooter(props) {
-    const { footerNavList, footerMenuList, footerInstagram } = props;
+const footerNavList = [
+    {
+        "imgURL": "Assets/Iteration-2-aseets/footer/icons/icon-1.png",
+        "alt": "adress",
+        "name": "341 Londonderry Road, Istanbul Türkiye"
+    },
+    {
+        "imgURL": "Assets/Iteration-2-aseets/footer/icons/icon-2.png",
+        "alt": "email",
+        "name": "aciktim@teknolojikyemekler.com"
+    },
+    {
+        "imgURL": "Assets/Iteration-2-aseets/footer/icons/icon-3.png",
+        "alt": "phone",
+        "name": "+90 216 123 45 67"
+    },
+]
+
+const footerMenuList = [
+    "Terminal Pizza",
+    "5 Kişilik Hackathlon Pizza",
+    "useEffect Tavuklu Pizza",
+    "Beyaz Console Frosty",
+    "Testler Geçti Mutlu Burger",
+    "Position Absolute Acı Burger"]
+
+const footerInstagram = [
+    {
+        "imgURL": "Assets/Iteration-2-aseets/footer/insta/li-0.png",
+        "alt": "Instagram-1",
+    },
+    {
+        "imgURL": "Assets/Iteration-2-aseets/footer/insta/li-1.png",
+        "alt": "Instagram-2",
+    },
+    {
+        "imgURL": "Assets/Iteration-2-aseets/footer/insta/li-2.png",
+        "alt": "Instagram-3",
+    },
+    {
+        "imgURL": "Assets/Iteration-2-aseets/footer/insta/li-3.png",
+        "alt": "Instagram-4",
+    },
+    {
+        "imgURL": "Assets/Iteration-2-aseets/footer/insta/li-4.png",
+        "alt": "Instagram-5",
+    },
+    {
+        "imgURL": "Assets/Iteration-2-aseets/footer/insta/li-5.png",
+        "alt": "Instagram-6",
+    }
+]
+function HomeFooter() {
+
+
     return (
         <footer>
             <div className="footer-first-frame">

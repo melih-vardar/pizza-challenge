@@ -2,8 +2,8 @@ import React from 'react'
 import "./Success.css";
 
 function Success(props) {
-    const { pizzaData, price, totalPrice } = props;
-    const { selectedOption, pizzaToppings, doughThickness } = pizzaData;
+    const { pizzaData } = props;
+    const { pizzaToppings, selectedOption, totalPrice, price, doughThickness } = pizzaData;
     return (
         <>
             <div className="successHomeBannerMobile">
