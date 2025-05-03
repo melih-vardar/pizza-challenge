@@ -139,9 +139,9 @@ function OrderPizza(props) {
         event.preventDefault();
 
         await axios
-            .post('https://reqres.in/api/pizza', { form })
+            .post('https://httpbin.org/post', { form })
             .then((res) => {
-                setPizzaData(res.data);
+                setPizzaData(JSON.parse(res.data.data));
                 console.log(res.data);
                 if (res.data) {
                     history.push('/order-pizza/success');
